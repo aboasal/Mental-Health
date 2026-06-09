@@ -7,13 +7,25 @@ require_once 'config/AuthManager.php';
 // Always start the secure session so we know who is browsing
 AuthManager::startSession();
 
-// Parse the requested URL to figure out where they want to go
+// Parse the requested URL
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// The Routing Switchboard
+// NEW: Strip out the XAMPP subfolder so the router works locally
+$basePath = '/Mental-Health';
+if (strpos($requestUri, $basePath) === 0) {
+    $requestUri = substr($requestUri, strlen($basePath));
+}
+
+// If the URL is empty after stripping the base path, default it to '/'
+if ($requestUri === '' || $requestUri === false) {
+    $requestUri = '/';
+}
+
 switch ($requestUri) {
     case '/':
     case '/login':
+    case '/index.php':
+        // ... rest of your code stays exactly the same
         // If they are already logged in, don't show the login page; send them to their dashboard
         if (AuthManager::getCurrentUserId()) {
             routeUserToDashboard(AuthManager::getCurrentRole());

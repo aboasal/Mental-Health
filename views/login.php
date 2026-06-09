@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Holistic Wellness Portal</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/Mental-Health/assets/css/style.css">
     <style>
         .login-wrapper {
             max-width: 400px;

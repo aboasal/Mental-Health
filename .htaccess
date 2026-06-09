@@ -1,0 +1,6 @@
+RewriteEngine On
+# If the file or folder doesn't exist natively...
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# ...send the traffic to index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
